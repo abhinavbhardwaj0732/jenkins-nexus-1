@@ -1,11 +1,14 @@
 pipeline {
     agent any
+    tools {
+        maven "MAVEN"
+    }
     
     environment {
        
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "http://localhost:8083/#browse/welcome"
+        NEXUS_URL = "http://localhost:8083"
         NEXUS_REPOSITORY = "java-app"
         NEXUS_CREDENTIAL_ID = "NEXUS_CRED"
     }
@@ -13,7 +16,7 @@ pipeline {
         stage("Clone code from GitHub") {
             steps {
                 script {
-                    git branch: 'main', credentialsId: 'githubwithpassword', url: 'https://github.com/abhinavbhardwaj0732/jenkins-nexus-1.git';
+                    git branch: 'main', credentialsId: 'githubwithpassword', url: 'https://github.com/abhinavbhardwaj0732/jenkins-nexus-1';
                 }
             }
         }
@@ -37,7 +40,7 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol:'http',
-                            nexusUrl: 'http://localhost:8083/#browse/welcome',
+                            nexusUrl: 'http://localhost:8083',
                             groupId: pom.groupId,
                             version: pom.version,
                             repository: 'maven-central-repository',
