@@ -41,7 +41,7 @@ pipeline {
                             nexusUrl: 'http://localhost:8083/#browse/welcome',
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: 'maven-central-repository,
+                            repository: 'maven-central-repository',
                             credentialsId: 'NEXUS_CRED',
                             artifacts: [
                                 [artifactId: pom.artifactId,
