@@ -1,12 +1,11 @@
 pipeline {
     agent any
-    tools {
-        maven "MAVEN"
-    }
+    
     environment {
+        MAVEN_HOME = tool('M3')
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = ""
+        NEXUS_URL = "http://localhost:8083/#browse/welcome"
         NEXUS_REPOSITORY = "java-app"
         NEXUS_CREDENTIAL_ID = "NEXUS_CRED"
     }
